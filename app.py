@@ -36,11 +36,6 @@ app.secret_key = uuid.uuid4().hex
 jwt = JWT(app, authenticate, identity)
 '''
 
-# Use decorator to perform action before first request into app
-@app.before_first_request
-def create_tables():
-    db.create_all() # Only creates the tables it sees from the imports
-
 # This will set the auth enpoint to /login  to verify user
 app.config['JWT_AUTH_URL_RULE'] = '/login'
 jwt = JWT(app, authenticate, identity)
