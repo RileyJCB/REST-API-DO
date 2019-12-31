@@ -24,7 +24,7 @@ python app.py
 ```
 
 ## Description
-This is a test application from Udemy : REST APIs with Flask and Python
+This is a test application from Udemy : REST APIs with Flask and Python.
 It has all the needed modules for deployment onto Heroku.
 
 ## Implementation
