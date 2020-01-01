@@ -1,3 +1,8 @@
+##################################
+# Heroku postgress specific code
+import os
+##################################
+
 from datetime import timedelta
 
 from flask import Flask
@@ -14,8 +19,10 @@ from resources.store import Store, StoreList
 
 app = Flask(__name__)
 
-# Tell SQLAlchemy where to find the Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+##################################
+# Heroku postgress specific code, uses the Environment Variable else use sqlite
+app.config['SQLALCHEMY_DATABASE_URI'].os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+##################################
 
 # Turn of Flasks Database Tracker but SQLALCHEMY is still on
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -60,6 +67,6 @@ api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
-    from db import db    
+    from db import db
     db.init_app(app)
     app.run(port=8050, debug=True)
