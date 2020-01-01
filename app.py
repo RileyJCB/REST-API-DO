@@ -1,5 +1,5 @@
 ##################################
-# Heroku postgress specific code
+# Heroku postgress specific code to get from environment
 import os
 ##################################
 
