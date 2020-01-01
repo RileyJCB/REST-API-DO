@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 ##################################
 # Heroku postgress specific code, uses the Environment Variable else use sqlite
-app.config['SQLALCHEMY_DATABASE_URI'].os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 ##################################
 
 # Turn of Flasks Database Tracker but SQLALCHEMY is still on
