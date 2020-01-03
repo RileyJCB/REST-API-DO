@@ -94,7 +94,8 @@ class Item(Resource):
 class ItemList(Resource):
     def get(self):
         # Pythonic approach with list comprehension
-        return {'items': [item.json() for item in ItemModel.query.all()]}
+        #return {'items': [item.json() for item in ItemModel.query.all()]}
+        return {'items': [item.json() for item in ItemModel.find_all()]}
         # or using map and lambda if using Javascript may want to list map
         # return {'items': list(map(lambda x: x.json(), ItemModel.query.all()))}
         '''
