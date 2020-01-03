@@ -14,6 +14,7 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
+from resources.carter import Carter
 
 # Resource(s) are just things, items, they are often mapped into database tables
 
@@ -28,7 +29,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:/
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # config JWT to expire within 3 hours
-app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=10800)
+#app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=10800)
+
+# Pass the actual error code to pass through flask and be communicated 
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 '''
 # config JWT auth key name to be 'email' instead of default 'username'
@@ -65,6 +69,7 @@ api.add_resource(Item, '/item/<string:name>') #http://127.0.0.1:8050/item/<name>
 api.add_resource(ItemList, '/items')
 api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
+api.add_resource(Carter, '/games')
 
 if __name__ == '__main__':
     from db import db
